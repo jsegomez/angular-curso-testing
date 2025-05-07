@@ -14,27 +14,27 @@ describe('ReversePipe', () => {
     expect(spectator.element).toHaveText('aloh');
   });
 
-  it('should return empty string unchanged', () => {
+  it('should handle empty string', () => {
     spectator = createPipe({ hostProps: { value: '' } });
     spectator.detectChanges();
     expect(spectator.element).toHaveText('');
   });
 
-  it('should handle single character', () => {
-    spectator = createPipe({ hostProps: { value: 'x' } });
+  it('should handle palindrome', () => {
+    spectator = createPipe({ hostProps: { value: 'radar' } });
     spectator.detectChanges();
-    expect(spectator.element).toHaveText('x');
+    expect(spectator.element).toHaveText('radar');
   });
 
-  it('should reverse a sentence with spaces', () => {
+  it('should handle string with spaces', () => {
     spectator = createPipe({ hostProps: { value: 'hello world' } });
     spectator.detectChanges();
     expect(spectator.element).toHaveText('dlrow olleh');
   });
 
-  it('should preserve special characters', () => {
-    spectator = createPipe({ hostProps: { value: 'a b!' } });
+  it('should handle string with special characters', () => {
+    spectator = createPipe({ hostProps: { value: 'hello!!!' } });
     spectator.detectChanges();
-    expect(spectator.element).toHaveText('!b a');
+    expect(spectator.element).toHaveText('!!!olleh');
   });
 });
